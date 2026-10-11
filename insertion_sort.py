@@ -37,6 +37,21 @@ def bubble_sort(arr):
     print(f"Running time for Bubble Sort is {round((end-start)*1000,5)} ms")           
     return round((end-start)*1000,5)
 
+
+def selection_sort(arr):
+    start=time.time()
+    n = len(arr)
+    for i in range (n-1):
+        min_value = i
+        for j in range(i+1,n):
+            if arr[min_value]>arr[j]:
+                min_value=j
+        arr [i],arr[min_value]=arr[min_value],arr[i]
+
+    end = time.time()
+    print(f"Running time for selection Sort is {round((end - start) * 1000, 5)} ms")
+    return round((end - start) * 1000, 5)
+
 def main():
 
     ##x=[10000,25000,50000,100000]
@@ -61,11 +76,11 @@ def main():
     y4i=insertion_sort(arr4.copy())
     yi= [y1i,y2i,y3i,y4i]
 
-    ##y1s=selection_sort(arr1.copy())
-    ##y2s=selection_sort(arr2.copy())
-    ##y3s=selection_sort(arr3.copy())
-    ##y4s=selection_sort(arr4.copy())
-    ##ys=[y1s,y2s,y3s,y4s]
+    y1s=selection_sort(arr1.copy())
+    y2s=selection_sort(arr2.copy())
+    y3s=selection_sort(arr3.copy())
+    y4s=selection_sort(arr4.copy())
+    ys=[y1s,y2s,y3s,y4s]
 
     y1b=bubble_sort(arr1.copy())
     y2b=bubble_sort(arr2.copy())
@@ -75,7 +90,7 @@ def main():
 
 
     plt.plot(x, yi, label='insertion sort', color='yellow', linestyle='-', marker='o')
-    ##plt.plot(x, ys, label='selection sort', color='red', linestyle='-', marker='o')
+    plt.plot(x, ys, label='selection sort', color='red', linestyle='-', marker='o')
     plt.plot(x, yb, label='bubble sort', color='blue', linestyle='-', marker='o')
     
 
