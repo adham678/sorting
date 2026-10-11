@@ -1,6 +1,7 @@
 import time
 import random
 import matplotlib.pyplot as plt
+#1
 
 def generate_randomarray(n):
     arr=[]
