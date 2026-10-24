@@ -92,7 +92,47 @@ def quicksort_time(arr):
                       f" {execution_time_ms} ms")
     return execution_time_ms        
     
-         
+def merge_sort(arr):
+    if len(arr) <= 1:
+        return arr
+
+    mid = len(arr) // 2
+
+    left = merge_sort(arr[:mid])
+    right = merge_sort(arr[mid:])
+
+    return merge(left, right)
+
+
+def merge(left, right):
+    result = []
+    i = 0
+    j = 0
+
+    while i < len(left) and j < len(right):
+        if left[i] <= right[j]:
+            result.append(left[i])
+            i += 1
+        else:
+            result.append(right[j])
+            j += 1
+
+    result.extend(left[i:])
+    result.extend(right[j:])
+
+    return result
+
+
+
+
+def mergeSort_time(arr):
+    start = time.perf_counter()
+    merge_sort(arr)
+    end = time.perf_counter()    
+    execution_time_ms = round((end - start) * 1000, 5)
+    print(        f"Running time for merge Sort with input size {len(arr)} "
+                      f" {execution_time_ms} ms")
+    return execution_time_ms
 
 
 def main():
@@ -133,12 +173,12 @@ def main():
     y4q = quicksort_time(arr4.copy())
     yq = [y1q, y2q, y3q, y4q]
 
-    # Merge sort
-    # y1m = merge_sort(arr1.copy())
-    # y2m = merge_sort(arr2.copy())
-    # y3m = merge_sort(arr3.copy())
-    # y4m = merge_sort(arr4.copy())
-    # ym = [y1m, y2m, y3m, y4m]
+    
+    y1m = mergeSort_time(arr1.copy())
+    y2m = mergeSort_time(arr2.copy())
+    y3m = mergeSort_time(arr3.copy())
+    y4m = mergeSort_time(arr4.copy())
+    ym = [y1m, y2m, y3m, y4m]
 
     # Heap sort
     # y1h = heap_sort(arr1.copy())
@@ -160,7 +200,7 @@ def main():
     plt.plot(x, ys, label='selection sort', color='red', linestyle='-', marker='o')
     plt.plot(x, yb, label='bubble sort', color='blue', linestyle='-', marker='o')
     plt.plot(x, yq, label='quick sort', color='purple', linestyle='-', marker='o')
-    # plt.plot(x, ym, label='merge sort', color='orange', linestyle='-', marker='o')
+    plt.plot(x, ym, label='merge sort', color='orange', linestyle='-', marker='o')
     # plt.plot(x, yh, label='heap sort', color='brown', linestyle='-', marker='o')
     # plt.plot(x, yhy, label='hybrid merge-selection sort', color='black', linestyle='-', marker='o')
 
